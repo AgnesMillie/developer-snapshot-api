@@ -1,37 +1,39 @@
-# Developer Snapshot API
+# Developer Snapshot API & Frontend
 
-![API Status](https://img.shields.io/badge/status-in%20development-yellow)
-![GitHub License](https://img.shields.io/badge/license-MIT-blue.svg)
-![Version](https://img.shields.io/badge/version-0.1.0-lightgrey)
+![Status](https://img.shields.io/badge/status-complete-success)
+![Version](https://img.shields.io/badge/version-1.0.0-blue)
+![License](https://img.shields.io/badge/license-MIT-blue.svg)
 
-An intelligent API that analyzes a developer's GitHub profile to provide qualitative insights about their skills, impact, and collaboration style. This project aims to transform raw GitHub data into a meaningful developer "snapshot".
+A full-stack application designed to provide intelligent, qualitative insights into a developer's profile by analyzing their GitHub repositories and activities. This project serves as a comprehensive demonstration of modern software architecture, from a containerized backend to a reactive frontend.
 
-## The Problem
+---
 
-Recruiters and tech leads often spend hours manually analyzing GitHub profiles to understand a candidate's true capabilities. A contribution graph shows activity, but it doesn't tell the whole story. Key questions remain unanswered:
+### Welcome Screen
+![Welcome Screen](./docs/screenshots/image.png)
 
--   What are the developer's actual, demonstrated skills, beyond what's listed on their resume?
--   Which of their contributions had a real impact?
--   What is their collaboration style like in a team environment?
+### Analysis Results
+![Analysis Results](./docs/screenshots/image2.png)
 
-The Developer Snapshot API was created to answer these questions, providing deep, qualitative insights programmatically.
+---
 
-## Features
+## Core Concept
 
--   **Intelligent Skill Inference:** Analyzes repository code to identify specific skills and technologies (e.g., "REST API design with Express.js" instead of just "JavaScript").
--   **Impactful Contribution Analysis:** Pinpoints the most significant pull requests and contributions in third-party projects.
--   **Collaboration Style Profiling:** Assesses interactions in issues and pull requests to determine a collaboration archetype (e.g., "Detailed Reviewer," "Responsive Mentor").
--   **Project Archetype Classification:** Categorizes a developer's personal projects to showcase their areas of interest (e.g., "CLI Tools," "Frontend Libraries," "IoT Projects").
+Standard GitHub profiles show quantitative data (e.g., contribution counts) but often fail to tell the qualitative story of a developer's skills and style. This project bridges that gap by programmatically analyzing a user's public work to infer skills, classify project types, and provide a richer, more nuanced "snapshot".
 
-## API Usage
+## Key Features
 
-The API is simple and straightforward. Make a GET request to the main endpoint with a valid GitHub username.
+-   **Intelligent Skill Inference:** Parses dependency files (`requirements.txt`, `package.json`, `pom.xml`) within repositories to identify and list specific frameworks and libraries.
+-   **Project Archetype Classification:** Applies a heuristic-based engine to categorize repositories into types like "Frontend Web App," "DevOps / Infrastructure," or "Data Science."
+-   **Performant Orchestration:** The backend leverages `asyncio` to perform dozens of concurrent API calls to GitHub, gathering file trees and content in parallel for a responsive experience.
+-   **Modern Full-Stack Environment:**
+    -   **Backend:** A robust, asynchronous API built with **Python** and **FastAPI**.
+    -   **Frontend:** A clean, reactive UI built with **TypeScript** and **React (Vite)**.
+    -   **Unified Development:** The entire application is orchestrated with **Docker Compose**, allowing the full-stack environment to be launched with a single `docker-compose up` command.
 
-### Get Developer Snapshot
+## API Usage Example
 
-`GET /v1/user/{username}/snapshot`
+The frontend is powered by the `GET /v1/users/{username}/snapshot` endpoint.
 
-#### Example Request
-
+**Example Request:**
 ```bash
-curl -X GET [https://api.yourdomain.com/v1/user/octocat/snapshot](https://api.yourdomain.com/v1/user/octocat/snapshot)
+curl http://localhost:8000/v1/users/AgnesMillie/snapshot
