@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { Layout } from './components/Layout/Layout';
-// 1. Importamos nossos novos componentes principais
 import { EmptyState } from './components/EmptyState/EmptyState';
 import { ResultsDisplay } from './components/ResultsDisplay/ResultsDisplay';
-// Importamos o serviço e os tipos como antes
 import { fetchDeveloperSnapshot } from './services/apiService';
 import type { Snapshot } from './types/snapshot';
+// Importamos o styles do Layout para usar nossa nova classe
+import layoutStyles from './components/Layout/Layout.module.css';
 
 function App() {
   const [snapshot, setSnapshot] = useState<Snapshot | null>(null);
@@ -13,6 +13,7 @@ function App() {
   const [error, setError] = useState<string | null>(null);
 
   const handleSearch = async (username: string) => {
+    // ... (lógica do handleSearch continua a mesma) ...
     setIsLoading(true);
     setSnapshot(null);
     setError(null);
@@ -30,26 +31,30 @@ function App() {
     }
   };
 
-  // 2. Esta função decide o que mostrar na tela.
   const renderContent = () => {
     if (isLoading) {
-      return <p>Analisando perfil... 🚀</p>;
+      // Usamos a div com a classe de centralização
+      return (
+        <div className={layoutStyles.statusContainer}>
+          <p>Analisando perfil... 🚀</p>
+        </div>
+      );
     }
     if (error) {
-      return <p style={{ color: '#ff8a8a' }}>Erro: {error}</p>;
+      // Usamos a div com a classe de centralização aqui também
+      return (
+        <div className={layoutStyles.statusContainer}>
+          <p style={{ color: '#ff8a8a' }}>Erro: {error}</p>
+        </div>
+      );
     }
     if (snapshot) {
-      // Se temos dados, mostramos o componente de resultados
       return <ResultsDisplay snapshot={snapshot} />;
     }
-    // Se nenhuma das condições acima for verdade, estamos no estado inicial.
-    // Mostramos nossa tela de boas-vindas, passando a função de busca para ela.
     return <EmptyState onSearch={handleSearch} />;
   };
 
   return (
-    // 3. O nosso JSX principal agora é muito mais limpo.
-    //    Ele apenas renderiza o Layout e o conteúdo decidido pela função renderContent.
     <Layout>
       {renderContent()}
     </Layout>
