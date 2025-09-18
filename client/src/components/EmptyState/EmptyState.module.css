@@ -1,0 +1,23 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1.5rem; /* Espaço entre os elementos */
+  padding: 2rem 0;
+}
+
+.icon {
+  font-size: 4rem; /* Tamanho grande para o ícone */
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: #a0a0a0; /* Um cinza mais claro para o subtítulo */
+  max-width: 500px; /* Evita que o texto fique muito largo em telas grandes */
+}

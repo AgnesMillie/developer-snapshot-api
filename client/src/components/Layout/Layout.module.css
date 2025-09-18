@@ -3,6 +3,9 @@
   max-width: 700px;
   padding: 2rem 1rem;
 
+  /* A linha abaixo é a chave para a centralização horizontal */
+  margin: 2rem auto;
+
   display: flex;
   flex-direction: column;
   gap: 2rem;

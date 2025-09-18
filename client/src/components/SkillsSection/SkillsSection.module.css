@@ -1,0 +1,28 @@
+.container {
+  width: 100%;
+}
+
+.title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #cacaca;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap; /* Permite que as tags quebrem para a próxima linha */
+  gap: 0.75rem; /* Espaço entre as tags */
+}
+
+.skillTag {
+  padding: 0.5rem 1rem;
+  background-color: #0c66e4;
+  color: #ffffff;
+  border-radius: 16px; /* Bordas arredondadas para o efeito de pílula */
+  font-size: 0.9rem;
+  font-weight: 500;
+  white-space: nowrap; /* Evita que o texto da tag quebre a linha */
+}

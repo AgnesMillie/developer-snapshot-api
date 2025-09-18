@@ -1,0 +1,58 @@
+.container {
+  width: 100%;
+}
+
+.title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #cacaca;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem; /* Diminuí um pouco o espaço */
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.label {
+  flex-shrink: 0;
+  width: 180px;
+  text-align: right;
+  color: #a0a0a0;
+  font-size: 0.9rem;
+}
+
+.barContainer {
+  flex-grow: 1;
+  background-color: #444;
+  border-radius: 4px;
+  height: 24px;
+}
+
+.bar {
+  height: 100%;
+  background-color: #3b82f6;
+  border-radius: 4px;
+  transition: width 0.5s ease-in-out;
+
+  /* Novas propriedades para alinhar o número */
+  display: flex;
+  align-items: center;
+  justify-content: flex-end; /* Alinha o número à direita */
+  padding-right: 0.5rem;
+}
+
+.count {
+  font-weight: 600;
+  font-size: 0.8rem;
+  color: #fff;
+}
