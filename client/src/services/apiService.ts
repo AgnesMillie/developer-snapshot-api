@@ -2,9 +2,10 @@
 // Isso garante que a função retornará dados no formato que esperamos.
 import type { Snapshot } from '../types/snapshot';
 
-// 2. Definimos a URL base da nossa API em um só lugar.
-// Se um dia fizermos deploy, só precisaremos mudar esta linha.
-const API_BASE_URL = 'http://localhost:8000/v1';
+// 2. A URL agora é lida de forma dinâmica a partir das variáveis de ambiente injetadas pelo Vite.
+//    Quando rodando via 'docker-compose', o Vite usará 'http://api:8000/v1'.
+//    Se rodarmos o frontend sozinho ('npm run dev'), ele usará o 'http://localhost:8000/v1' como fallback.
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000/v1';
 
 /**
  * Busca o snapshot de um desenvolvedor do nosso backend.
