@@ -1,0 +1,30 @@
+.container {
+  width: 100%;
+  background-color: #2f2f2f; /* Um cinza um pouco mais claro que o fundo */
+  border: 1px solid #444;
+  border-radius: 8px;
+  padding: 1.5rem 2rem;
+  animation: fadeIn 0.5s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem; /* Espaço entre as seções que adicionaremos */
+}
+
+/* Animação simples para a entrada do cartão */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.divider {
+  border: none;
+  height: 1px;
+  background-color: #444; /* Cor sutil para a linha */
+  margin: 0.5rem 0; /* Pequeno espaçamento vertical */
+}
