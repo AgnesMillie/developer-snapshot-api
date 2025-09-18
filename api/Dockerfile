@@ -1,36 +1,23 @@
-# Stage 1: Build stage with full OS to install dependencies
-FROM python:3.11-slim as builder
+# Estágio Único: Usamos uma imagem base do Python
+FROM python:3.11-slim
 
-# Set the working directory inside the container
+# Define o diretório de trabalho
 WORKDIR /app
 
-# Create and activate a virtual environment
-RUN python -m venv /app/venv
-ENV PATH="/app/venv/bin:$PATH"
+# Define o PYTHONPATH para garantir que as importações de 'src' funcionem
+ENV PYTHONPATH="/app"
 
-# Copy and install dependencies
+# Copia e instala as dependências globalmente dentro do container
+# (Sem venv, pois o container já é um ambiente isolado)
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-
-# Stage 2: Final stage with only the necessary files
-FROM python:3.11-slim
-
-# Set the working directory
-WORKDIR /app
-
-# Copy the virtual environment from the builder stage
-COPY --from=builder /app/venv ./venv
-
-# Copy the application source code
+# Copia o código da nossa aplicação
 COPY ./src ./src
+COPY main.py .
 
-# Activate the virtual environment for the final command
-ENV PATH="/app/venv/bin:$PATH"
-
-# Expose the port the app runs on
+# Expõe a porta que a aplicação vai usar
 EXPOSE 8000
 
-# Command to run the application
-# We use 0.0.0.0 to make it accessible from outside the container
-CMD ["uvicorn", "src.main:app", "--host", "0.0.0.0", "--port", "8000"]
+# Comando para iniciar o servidor. O uvicorn estará no PATH do sistema.
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
